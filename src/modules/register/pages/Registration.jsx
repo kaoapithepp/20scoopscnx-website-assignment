@@ -122,7 +122,6 @@ const Login = () => {
         </Submission>
       </Content>
       <Headliner>
-        <div className="black-gradient" />
         <h1>Join us today,</h1>
         <h3>To work & play everyday!</h3>
       </Headliner>

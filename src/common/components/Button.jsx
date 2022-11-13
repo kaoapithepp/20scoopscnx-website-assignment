@@ -15,6 +15,8 @@ export const Button = styled.button`
     transition: .3s;
 
     :hover {
-        background-color: var(--hover);
+        background-color: ${props => props.disabled ? "#DE5858" : "#a11f1f"};
     }
+
+
 `;
