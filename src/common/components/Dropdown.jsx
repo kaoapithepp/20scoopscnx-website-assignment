@@ -72,14 +72,14 @@ const FormWrapper = styled.div`
         box-sizing: border-box;
         position: relative;
         padding: 8px;
-        border: 2px solid var(--form-grey);
-        border-radius: 10px;
+        border: 1px solid var(--form-grey);
+        border-radius: 32px;
         width: 100%;
         outline: none;
         cursor: pointer;
-        /* color: var(--form-grey); */
+        color: var(--form-grey);
         font-size: 14px;
-        font-family: "Mitr", sans-serif;
+        font-family: var(--brand-font);
         ::placeholder {
             color: var(--form-grey);
             font-weight: 400;
@@ -101,9 +101,10 @@ const ChildList = styled.div`
     position: absolute;
     z-index: 99;
     background-color: var(--white);
-    width: 40%;
+    width: 30%;
     max-height: 20%;
-    overflow-y: scroll;
+    overflow: hidden;
+    /* overflow-y: scroll; */
     border-radius: 10px;
     box-shadow: 2px 2px 8px 4px rgba(0, 0, 0, 0.05);
     cursor: pointer;

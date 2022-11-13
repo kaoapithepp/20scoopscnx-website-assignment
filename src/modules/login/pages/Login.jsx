@@ -10,12 +10,40 @@ import { BorderedButton } from '../../../common/components/BorderedButton';
 // Styled-components
 import styled from 'styled-components';
 
+// APIs
+import { findUser } from '../../../common/api/login.controller';
+
+
 const Login = () => {
 
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  const [error, setError] = useState('');
 
   const navigate = useNavigate();
+
+  function handleInputChangeValid(){
+    if (email &&
+        password){
+          setIsDisabled(false);
+    }
+    else if (email == '' || password == '') {
+      setIsDisabled(true);
+    }
+  }
+
+  async function handleSignIn() {
+    try {
+      const user = await findUser(email, password)
+      if(user) {
+        navigate(`/welcome/${user.id}`, { replace: false });
+      }
+    } catch(e) {
+      alert(e.message);
+    }
+  }
 
   function onClickSignUp(e) {
     e.preventDefault();
@@ -30,11 +58,11 @@ const Login = () => {
         <h1>Crew's System</h1>
       </Header>
       <Content>
-        <form>
+        <form onChange={handleInputChangeValid}>
           <FormInput
-            callbackVal={setUsername} 
-            label="Username"
-            placeholder="Username"
+            callbackVal={setEmail} 
+            label="Email"
+            placeholder="Email"
             type="text"
           />
           <div className="toggle-pw-icon">
@@ -48,7 +76,7 @@ const Login = () => {
         </form>
         <Submission>
           {/* Login */}
-          <Button disabled={false}>Sign in</Button>
+          <Button disabled={isDisabled} onClick={handleSignIn}>Sign in</Button>
           <p>or you do not have an account?</p>
           {/* Register */}
           <BorderedButton disabled={false} onClick={onClickSignUp}>Sign up</BorderedButton>
@@ -67,7 +95,7 @@ const Container = styled.div`
   position: absolute;
   transform: translate(-50%, -50%);
 
-  width: 100vh;
+  width: 70%;
   padding: 16px;
   box-shadow: 0px 0px 40px 4px #d62e2e11;
   /* border: 1px solid var(--primary-color); */

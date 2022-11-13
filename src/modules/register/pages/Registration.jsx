@@ -10,6 +10,7 @@ import { BorderedButton } from '../../../common/components/BorderedButton';
 // Styled-components
 import styled from 'styled-components';
 import Checkbox from '../../../common/components/Checkbox';
+import Dropdown from '../../../common/components/Dropdown';
 
 const Login = () => {
 
@@ -17,6 +18,12 @@ const Login = () => {
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
+
+  function onClickJoinNow(e) {
+    e.preventDefault();
+
+    navigate("/sign-up-complete", { replace: false });
+  }
 
   function onClickSignIn(e) {
     e.preventDefault();
@@ -29,6 +36,11 @@ const Login = () => {
       <Content>
         <h1>Sign up</h1>
         <form>
+          <Dropdown
+            label="Gender"
+            placeholder="Gender"
+            data={["Male", "Female"]}
+          />
           <FormInput
             callbackVal={setUsername} 
             label="First Name"
@@ -70,12 +82,12 @@ const Login = () => {
 
         <div className="terms-service">
           <Checkbox />
-          <p>You have accepted our term and condition</p>
+          <p>You have accepted our terms and condition</p>
         </div>
 
         <Submission>
           {/* Submit registration */}
-          <Button disabled={false}>Join now!</Button>
+          <Button disabled={false} onClick={onClickJoinNow}>Join now!</Button>
           <p>already have an account?</p>
 
           {/* Login */}
@@ -84,8 +96,8 @@ const Login = () => {
       </Content>
       <Headliner>
         <div className="black-gradient" />
-        <h1>Join us today</h1>
-        <h3>to work & play everyday!</h3>
+        <h1>Join us today,</h1>
+        <h3>To work & play everyday!</h3>
       </Headliner>
     </Container>
   );
