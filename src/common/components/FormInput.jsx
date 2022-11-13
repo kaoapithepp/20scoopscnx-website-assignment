@@ -5,7 +5,8 @@ const FormInput = ({
     callbackVal,
     label,
     placeholder,
-    type 
+    type,
+    maxChar
 }) => {
 
     const [value, setValue] = useState('');
@@ -13,6 +14,12 @@ const FormInput = ({
     function onFormChange(e) {
         callbackVal(e.target.value);
         setValue(e.target.value);
+    }
+
+    function maxLengthCheck(e){
+        if(e.target.value.length > e.target.maxLength) {
+            e.target.value = e.target.value.slice(0, e.target.maxLength);
+        }
     }
     
     return (
@@ -23,6 +30,8 @@ const FormInput = ({
                 value={value}
                 onChange={e => onFormChange(e)}
                 placeholder={placeholder}
+                maxLength={maxChar}
+                onInput={maxChar ? maxLengthCheck : null}
             />
         </FormWrapper>
     );

@@ -58,10 +58,14 @@ const Container = styled.div`
   position: absolute;
   transform: translate(-50%, -50%);
 
-  width: 70%;
+  width: 50%;
   padding: 16px;
   box-shadow: 0px 0px 40px 4px #d62e2e11;
   border-radius: 32px;
+
+  @media screen and (max-width: 1200px) {
+    width: 70%;
+  }
 `;
 
 const Profile = styled.div`

@@ -77,7 +77,7 @@ const FormWrapper = styled.div`
         width: 100%;
         outline: none;
         cursor: pointer;
-        color: var(--form-grey);
+        color: var(--black);
         font-size: 14px;
         font-family: var(--brand-font);
         ::placeholder {
@@ -112,6 +112,10 @@ const ChildList = styled.div`
         font-size: 12px;
         max-height: 10%;
         width: 50%;
+    }
+
+    p {
+        color: var(--black);
     }
 `;
 

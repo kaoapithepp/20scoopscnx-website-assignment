@@ -13,7 +13,7 @@ const Checkbox = ({ callbackVal }) => {
     const [value, setValue] = useState(false);
 
     function onToggleValue() {
-        // callbackVal(!value);
+        callbackVal(!value);
         setValue(!value);
     }
 

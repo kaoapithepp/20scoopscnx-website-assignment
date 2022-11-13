@@ -7,6 +7,7 @@ export default createGlobalStyle`
         --primary-color: #D62E2E; // Brand Blue
         --button-color: #D62E2E; // Button color
         --hover-disabled: #DE5858; // hover or disabled
+        --hover: #a11f1f;
         --black: #000000; // Everything which is black
         --pale-black: #777777; // Everything which is black
         --form-grey: #B6B6B6; // Form placeholder, border

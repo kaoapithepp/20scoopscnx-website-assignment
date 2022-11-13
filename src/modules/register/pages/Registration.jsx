@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Global components
@@ -14,13 +14,37 @@ import Dropdown from '../../../common/components/Dropdown';
 
 const Login = () => {
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [user, setUser] = useState({
+    gender: '',
+    first_name: '',
+    last_name: '',
+    address: '',
+    postcode: 0,
+    email: '',
+    tel_no: 0,
+    toc: false
+  });
+  // const [isDisabled, setIsDisabled] = useState(true);
 
   const navigate = useNavigate();
 
+  function isValidEmail(email) {
+    return /\S+@\S+\.\S+/.test(email);
+  }
+
+  function handleCheckEmail() {
+    if(!isValidEmail(user.email)){
+      alert("Email is invalid format!");
+      return;
+    }
+  }
+
   function onClickJoinNow(e) {
     e.preventDefault();
+
+    handleCheckEmail();
+
+    console.log(user);
 
     navigate("/sign-up-complete", { replace: false });
   }
@@ -37,57 +61,60 @@ const Login = () => {
         <h1>Sign up</h1>
         <form>
           <Dropdown
+            callbackVal={e => setUser({ ...user, gender: e })}
             label="Gender"
             placeholder="Gender"
             data={["Male", "Female"]}
           />
           <FormInput
-            callbackVal={setUsername} 
+            callbackVal={e => setUser(({ ...user, first_name: e }))} 
             label="First Name"
             placeholder="First Name"
             type="text"
           />
           <FormInput
-            callbackVal={setUsername} 
+            callbackVal={e => setUser(({ ...user, last_name: e }))} 
             label="Last Name"
             placeholder="Last Name"
             type="text"
           />
           <FormInput
-            callbackVal={setUsername} 
+            callbackVal={e => setUser(({ ...user, address: e }))} 
             label="Address"
             placeholder="Address"
             type="text"
           />
           <FormInput
-            callbackVal={setUsername} 
+            callbackVal={e => setUser(({ ...user, postcode: e }))} 
             label="Postcode"
             placeholder="Postcode"
-            type="text"
+            type="number"
+            maxChar="5"
           />
           <FormInput
-            callbackVal={setUsername} 
+            callbackVal={e => setUser(({ ...user, email: e }))} 
             label="Email"
             placeholder="Email"
-            type="text"
+            type="email"
           />
           <FormInput
-            callbackVal={setUsername} 
+            callbackVal={e => setUser(({ ...user, tel_no: e }))} 
             label="Telephone Number"
             placeholder="Telephone Number"
-            type="text"
+            type="number"
+            maxChar="10"
           />
-          
-        </form>
 
-        <div className="terms-service">
-          <Checkbox />
-          <p>You have accepted our terms and condition</p>
-        </div>
+          <div className="terms-service">
+            <Checkbox callbackVal={e => setUser(({ ...user, toc: e }))}/>
+            <p>You have accepted our Terms and Condition</p>
+          </div>
+
+        </form>
 
         <Submission>
           {/* Submit registration */}
-          <Button disabled={false} onClick={onClickJoinNow}>Join now!</Button>
+          <Button disabled={!user.toc} onClick={onClickJoinNow}>Join now!</Button>
           <p>already have an account?</p>
 
           {/* Login */}

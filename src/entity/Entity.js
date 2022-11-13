@@ -3,9 +3,9 @@ export const RegEntity = {
     first_name: '',
     last_name: '',
     address: '',
-    postcode: 0,
+    postcode: '',
     email: '',
-    tel_no: 0,
+    tel_no: '',
     toc: false
 }
 
