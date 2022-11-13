@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 // Global components
 import FormInput from '../../../common/components/FormInput';
-import PasswordInput from '../../../common/components/PasswordInput';
 import { Button } from '../../../common/components/Button';
 import { BorderedButton } from '../../../common/components/BorderedButton';
 
@@ -24,10 +23,15 @@ const Login = () => {
     tel_no: 0,
     toc: false
   });
-  // const [isDisabled, setIsDisabled] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    setTimeout(() => setIsLoading(false), 2000)
+  },[])
+
+  // Reg-ex to validate the form an email
   function isValidEmail(email) {
     return /\S+@\S+\.\S+/.test(email);
   }
@@ -56,78 +60,110 @@ const Login = () => {
   }
   
   return (
-    <Container>
-      <Content>
-        <h1>Sign up</h1>
-        <form>
-          <Dropdown
-            callbackVal={e => setUser({ ...user, gender: e })}
-            label="Gender"
-            placeholder="Gender"
-            data={["Male", "Female"]}
-          />
-          <FormInput
-            callbackVal={e => setUser(({ ...user, first_name: e }))} 
-            label="First Name"
-            placeholder="First Name"
-            type="text"
-          />
-          <FormInput
-            callbackVal={e => setUser(({ ...user, last_name: e }))} 
-            label="Last Name"
-            placeholder="Last Name"
-            type="text"
-          />
-          <FormInput
-            callbackVal={e => setUser(({ ...user, address: e }))} 
-            label="Address"
-            placeholder="Address"
-            type="text"
-          />
-          <FormInput
-            callbackVal={e => setUser(({ ...user, postcode: e }))} 
-            label="Postcode"
-            placeholder="Postcode"
-            type="number"
-            maxChar="5"
-          />
-          <FormInput
-            callbackVal={e => setUser(({ ...user, email: e }))} 
-            label="Email"
-            placeholder="Email"
-            type="email"
-          />
-          <FormInput
-            callbackVal={e => setUser(({ ...user, tel_no: e }))} 
-            label="Telephone Number"
-            placeholder="Telephone Number"
-            type="number"
-            maxChar="10"
-          />
+    <>
+      { isLoading &&
+        <Loader>
+          <img src={"icons/checkmark.gif"} />
+        </Loader> }
+      <Container>
+        <Content>
+          <h1>Sign up</h1>
+          <form>
+            <Dropdown
+              callbackVal={e => setUser({ ...user, gender: e })}
+              label="Gender"
+              placeholder="Gender"
+              data={["Male", "Female"]}
+            />
+            <FormInput
+              callbackVal={e => setUser(({ ...user, first_name: e }))} 
+              label="First Name"
+              placeholder="First Name"
+              type="text"
+            />
+            <FormInput
+              callbackVal={e => setUser(({ ...user, last_name: e }))} 
+              label="Last Name"
+              placeholder="Last Name"
+              type="text"
+            />
+            <FormInput
+              callbackVal={e => setUser(({ ...user, address: e }))} 
+              label="Address"
+              placeholder="Address"
+              type="text"
+            />
+            <FormInput
+              callbackVal={e => setUser(({ ...user, postcode: e }))} 
+              label="Postcode"
+              placeholder="Postcode"
+              type="number"
+              maxChar="5"
+            />
+            <FormInput
+              callbackVal={e => setUser(({ ...user, email: e }))} 
+              label="Email"
+              placeholder="Email"
+              type="email"
+            />
+            <FormInput
+              callbackVal={e => setUser(({ ...user, tel_no: e }))} 
+              label="Telephone Number"
+              placeholder="Telephone Number"
+              type="number"
+              maxChar="10"
+            />
 
-          <div className="terms-service">
-            <Checkbox callbackVal={e => setUser(({ ...user, toc: e }))}/>
-            <p>You have accepted our Terms and Condition</p>
-          </div>
+            <div className="terms-service">
+              <Checkbox callbackVal={e => setUser(({ ...user, toc: e }))}/>
+              <p>You have accepted our Terms and Condition</p>
+            </div>
 
-        </form>
+          </form>
 
-        <Submission>
-          {/* Submit registration */}
-          <Button disabled={!user.toc} onClick={onClickJoinNow}>Join now!</Button>
-          <p>already have an account?</p>
+          <Submission>
+            {/* Submit registration */}
+            <Button disabled={!user.toc} onClick={onClickJoinNow}>Join now!</Button>
+            <p>already have an account?</p>
 
-          {/* Login */}
-          <BorderedButton disabled={false} onClick={onClickSignIn}>Sign in</BorderedButton>
-        </Submission>
-      </Content>
-      <Headliner>
-        <h1>Join us today,</h1>
-        <h3>To work & play everyday!</h3>
-      </Headliner>
-    </Container>
+            {/* Login */}
+            <BorderedButton disabled={false} onClick={onClickSignIn}>Sign in</BorderedButton>
+          </Submission>
+        </Content>
+        <Headliner>
+          <h1>Join us today,</h1>
+          <h3>To work & play everyday!</h3>
+        </Headliner>
+      </Container>
+    </>
+    
   );
 }
+
+const Loader = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--white);
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+  animation: fadeout 2s;
+
+  @keyframes fadeout {
+    0% {opacity: 1;}
+    75% {opacity: 1;}
+    100% {opacity: 0;}
+  }
+
+  img {
+    width: 100px;
+  }
+`;
 
 const Container = styled.div`
   display: grid;
