@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 // Global components
 import FormInput from '../../../common/components/FormInput';
+import PasswordInput from '../../../common/components/PasswordInput';
 import { Button } from '../../../common/components/Button';
 import { BorderedButton } from '../../../common/components/BorderedButton';
 
@@ -36,12 +37,14 @@ const Login = () => {
             placeholder="Username"
             type="text"
           />
-          <FormInput
-            callbackVal={setPassword} 
-            label="Password"
-            placeholder="Password"
-            type="password"
-          />
+          <div className="toggle-pw-icon">
+            <PasswordInput
+              callbackVal={setPassword} 
+              label="Password"
+              placeholder="Password"
+              type="password"
+            />
+          </div>
         </form>
         <Submission>
           {/* Login */}
@@ -64,7 +67,7 @@ const Container = styled.div`
   position: absolute;
   transform: translate(-50%, -50%);
 
-  width: 70vh;
+  width: 100vh;
   padding: 16px;
   box-shadow: 0px 0px 40px 4px #d62e2e11;
   /* border: 1px solid var(--primary-color); */
