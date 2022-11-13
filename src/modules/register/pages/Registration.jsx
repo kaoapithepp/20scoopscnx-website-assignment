@@ -40,17 +40,15 @@ const Login = () => {
     if(!isValidEmail(user.email)){
       alert("Email is invalid format!");
       return;
+    } else {
+      console.log(user);
+      navigate("/sign-up-complete", { replace: false });
     }
   }
 
   function onClickJoinNow(e) {
     e.preventDefault();
-
     handleCheckEmail();
-
-    console.log(user);
-
-    navigate("/sign-up-complete", { replace: false });
   }
 
   function onClickSignIn(e) {
