@@ -13,10 +13,12 @@ const RegistrationComplete = () => {
 
   const navigate = useNavigate();
 
+  // Set loading screen
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 2000)
   },[])
 
+  // Handle clicking 'Back to sign in' button
   function onClickBackToSignIn(){
     navigate("/", { replace: true });
   }

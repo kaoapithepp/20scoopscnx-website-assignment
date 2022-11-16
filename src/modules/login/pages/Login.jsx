@@ -20,10 +20,9 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
 
-  const [error, setError] = useState('');
-
   const navigate = useNavigate();
 
+  // Handle whether user completed all of the fields to enable 'sign in' button
   function handleInputChangeValid(){
     if (email &&
         password){
@@ -34,6 +33,7 @@ const Login = () => {
     }
   }
 
+  // Handle signing in to validate with database if user exists
   async function handleSignIn() {
     try {
       const user = await findUser(email, password)
@@ -45,9 +45,9 @@ const Login = () => {
     }
   }
 
+  // Handle clicking 'sign up' button
   function onClickSignUp(e) {
     e.preventDefault();
-
     navigate("/sign-up", { replace: false });
   }
   
