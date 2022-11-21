@@ -3,4 +3,4 @@
 
 ## Structure
 After read the requirement, there are 2 sections we have to deal with which are 'Sign in System' and 'Registration System'.
-[Imgur](https://i.imgur.com/uf9sd62.png)
+[https://i.imgur.com/uf9sd62.png](https://i.imgur.com/uf9sd62.png)
