@@ -2,7 +2,7 @@
 (Qualified) The website assignment to qualify a front-end position's application of 20ScoopsCNX.
 
 ## Disclaimer
-I spent time for this project just only 5 hours including design and development. There are still flaws and issues inside the project. Besides, I have to do this whit Typescript language but in the less time situation so I chose the Javascript instead to rapidly create the mock up and deliver the job.
+I spent time for this project just only 5 hours including design and development. There are still flaws and issues inside the project. Besides, I have to do this with Typescript language but in the few amount of time situation so I chose the Javascript instead to rapidly create the mock up and deliver the job.
 
 ## Structure
 After read the requirement, there are 2 sections we have to deal with which are 'Sign in System' and 'Registration System'.
